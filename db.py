@@ -39,7 +39,12 @@ def db_set_store(store):
 	user.save()
 
 def db_set_donation(amount):
-	pass
+	user = get_user()
+	user.donation = amount
+	user.save()
 
 def db_set_cap(amount):
+	pass
+
+def db_set_charity(charity):
 	pass
