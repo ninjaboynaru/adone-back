@@ -11,6 +11,9 @@ db =  CockroachDatabase(db_name, user=db_user, password=db_password, host=db_hos
 
 class User(Model):
 	name = CharField()
+	username = CharField()
+	password = CharField()
+	phone = CharField()
 	store = CharField()
 	charity = CharField()
 	donation = FloatField()
