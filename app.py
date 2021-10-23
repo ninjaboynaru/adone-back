@@ -19,4 +19,14 @@ def set_donation(amount):
 
     return response
 
+@app.route("/set/store/<store>")
+def set_store(store):
+    db_error = db_set_store(store)
+    response = Response(status=200)
+
+    if (db_error != None):
+         response = Response(status=500)
+
+    return response
+
 app.run()
