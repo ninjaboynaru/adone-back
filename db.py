@@ -21,15 +21,22 @@ class User(Model):
 
 db.create_tables([User])
 
+def get_user():
+	return User.select().get()
+
 def db_get_user():
-	user = User.select().get()
+	user = get_user()
 	return model_to_dict(user)
 
 def db_make_donation():
-	pass
+	user = get_user()
+	user.donated += user.donation
+	user.save()
 
 def db_set_store(store):
-	pass
+	user = get_user()
+	user.store = store
+	user.save()
 
 def db_set_donation(amount):
 	pass
