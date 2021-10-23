@@ -29,4 +29,14 @@ def set_store(store):
 
     return response
 
+@app.route("/set/cap/<amount>")
+def set_cap(amount):
+    db_error = db_set_cap(amount)
+    response = Response(status=200)
+
+    if (db_error != None):
+        response = Response(status=500)
+
+    return response
+
 app.run()
