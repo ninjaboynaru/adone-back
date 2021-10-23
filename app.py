@@ -39,4 +39,14 @@ def set_cap(amount):
 
     return response
 
+@app.route("/set/charity/<charity>")
+def set_charity(charity):
+    db_error = db_set_charity(charity)
+    response = Response(status=200)
+
+    if (db_error != None):
+        response = Response(status=500)
+
+    return response
+
 app.run()
