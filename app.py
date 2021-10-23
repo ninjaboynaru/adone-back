@@ -25,7 +25,7 @@ def set_store(store):
     response = Response(status=200)
 
     if (db_error != None):
-         response = Response(status=500)
+        response = Response(status=500)
 
     return response
 
