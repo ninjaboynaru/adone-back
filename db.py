@@ -44,9 +44,11 @@ def db_set_donation(amount):
 	user.save()
 
 def db_set_cap(amount):
-	user = get_user()
-	user.max_donation = amount
-	user.save()
+    user = get_user()
+    user.max_donation = amount
+    user.save()
 
 def db_set_charity(charity):
-	pass
+    user = get_user()
+    user.charity = charity
+    user.save()
