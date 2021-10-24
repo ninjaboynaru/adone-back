@@ -59,4 +59,15 @@ def set_charity(charity):
 
     return response
 
+@app.route("/get/donated")
+def get_donated():
+    db_error, donated = db_get_donated()
+
+    if (db_error != None):
+        response = Response(status=500)
+    else:
+        response = Response(str(donated), status=200)
+    
+    return response
+
 app.run()

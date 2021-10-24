@@ -46,6 +46,10 @@ def db_get_user():
 	user = get_user()
 	return model_to_dict(user)
 
+def db_get_donated():
+	user = get_user()
+	return None, user.donated
+
 def db_make_donation():
 	user = get_user()
 	user.donated += user.donation
