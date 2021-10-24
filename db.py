@@ -50,6 +50,22 @@ def db_get_donated():
     user = get_user()
     return None, user.donated
 
+def db_get_store():
+    user = get_user()
+    return None, user.store
+
+def db_get_charity():
+    user = get_user()
+    return None, user.charity
+
+def db_get_donation():
+    user = get_user()
+    return None, user.donation
+
+def db_get_cap():
+    user = get_user()
+    return None, user.max_donation
+
 def db_make_donation():
     user = get_user()
     donate_total = user.donated + user.donation

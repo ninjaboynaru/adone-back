@@ -69,6 +69,15 @@ def set_charity(charity):
 
     return response
 
+@app.route("/quick_donate/")
+def quick_donate():
+    db_error = db_quick_donate()
+
+    if (db_error != None):
+        response = Response(status=500)
+    else:
+        response = Response(status=200)
+    return response
 
 @app.route("/get/donated")
 def get_donated():
@@ -77,22 +86,51 @@ def get_donated():
     if (db_error != None):
         response = Response(status=500)
     else:
-        response = Response('$' + str(donated), status=200)
+        response = Response('You have donated $' + str(donated), status=200)
 
     return response
 
-@app.route("/quick_donate/")
-def quick_donate():
-    db_error, hit_max, donation_made = db_quick_donate()
+@app.route("/get/store")
+def get_store():
+    db_error, store = db_get_store()
 
     if (db_error != None):
         response = Response(status=500)
     else:
-        if (hit_max == 'Yes'):
-            response = Response('You made a donation of $' + str(donation_made) +
-                                '\n You have reached your donation limit', status=200)
-        else:
-            response = Response('You made a donation of $' + str(donation_made), status=200)
+        response = Response('You have chosen ' + str(store) + ' as your store', status=200)
+
+    return response
+
+@app.route("/get/charity")
+def get_charity():
+    db_error, charity = db_get_charity()
+
+    if (db_error != None):
+        response = Response(status=500)
+    else:
+        response = Response('You have chosen ' + str(charity) + ' as your charity', status=200)
+
+    return response
+
+@app.route("/get/donation")
+def get_donation():
+    db_error, donation = db_get_donation()
+
+    if (db_error != None):
+        response = Response(status=500)
+    else:
+        response = Response('You have chosen to donate $' + str(donation), status=200)
+
+    return response
+
+@app.route("/get/cap")
+def get_cap():
+    db_error, cap = db_get_cap()
+
+    if (db_error != None):
+        response = Response(status=500)
+    else:
+        response = Response('Your current donation limit is $' + str(cap), status=200)
 
     return response
 
