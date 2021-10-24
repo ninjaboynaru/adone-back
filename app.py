@@ -119,7 +119,7 @@ def get_donation():
     if (db_error != None):
         response = Response(status=500)
     else:
-        response = Response('You have chosen to donate $' + str(donation), status=200)
+        response = Response('You have chosen to donate $' + str(donation) + ' each visit', status=200)
 
     return response
 
