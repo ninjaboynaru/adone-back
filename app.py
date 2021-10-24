@@ -75,5 +75,14 @@ def get_donated():
 
     return response
 
+@app.route("/quick_donate/")
+def quick_donate():
+    db_error = db_quick_donate()
+    response = Response(status=200)
+
+    if (db_error != None):
+        response = Response(status=500)
+
+    return response
 
 app.run()

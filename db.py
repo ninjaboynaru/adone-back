@@ -74,3 +74,6 @@ def db_set_charity(charity):
     user = get_user()
     user.charity = charity
     user.save()
+
+def db_quick_donate():
+    db_make_donation(.05)
