@@ -65,6 +65,7 @@ def db_set_store(store):
     user = get_user()
     user.store = store
     user.save()
+    return None, user.store
 
 def db_set_donation(amount):
     user = get_user()
@@ -80,6 +81,7 @@ def db_set_charity(charity):
     user = get_user()
     user.charity = charity
     user.save()
+    return None, user.charity
 
 def db_quick_donate():
     db_set_donation(.05)

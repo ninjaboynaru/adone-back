@@ -36,11 +36,12 @@ def make_donation():
 
 @app.route("/set/store/<store>")
 def set_store(store):
-    db_error = db_set_store(store)
-    response = Response(status=200)
+    db_error, store_db = db_set_store(store)
 
     if (db_error != None):
         response = Response(status=500)
+    else:
+        response = Response('Your store has been set to ' + str(store_db), status=200)
 
     return response
 
@@ -58,11 +59,12 @@ def set_cap(amount):
 
 @app.route("/set/charity/<charity>")
 def set_charity(charity):
-    db_error = db_set_charity(charity)
-    response = Response(status=200)
+    db_error, charity_db = db_set_charity(charity)
 
     if (db_error != None):
         response = Response(status=500)
+    else:
+        response = Response('Your charity has been set to ' + str(charity_db), status=200)
 
     return response
 
