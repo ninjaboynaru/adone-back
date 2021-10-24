@@ -13,7 +13,7 @@ class User(Model):
 	name = CharField()
 	username = CharField()
 	password = CharField()
-	phone = CharField()
+	phone_num = CharField()
 	store = CharField()
 	charity = CharField()
 	donation = FloatField()
@@ -23,6 +23,17 @@ class User(Model):
 		database = db
 
 db.create_tables([User])
+
+def db_create_account(name, un, pw, phone):
+	new_acct = User.create(name = name,
+						   username = un,
+						   password = pw,
+						   phone_num = phone,
+						   store = '',
+						   charity = '',
+						   donation = 0,
+						   donated = 0,
+						   max_donation = 0)
 
 def get_user():
 	return User.select().get()
