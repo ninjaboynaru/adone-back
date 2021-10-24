@@ -22,15 +22,16 @@ def set_donation(amount):
 
 @app.route("/make_donation/")
 def make_donation():
-    db_error, hit_max = db_make_donation()
+    db_error, hit_max, donation_made = db_make_donation()
 
     if (db_error != None):
         response = Response(status=500)
     else:
         if (hit_max == 'Yes'):
-            response = Response('You have reached your donation limit', status=200)
+            response = Response('You made a donation of $' + str(donation_made) +
+                                '\n You have reached your donation limit', status=200)
         else:
-            response = Response(status=200)
+            response = Response('You made a donation of $' + str(donation_made), status=200)
 
     return response
 
@@ -82,11 +83,16 @@ def get_donated():
 
 @app.route("/quick_donate/")
 def quick_donate():
-    db_error = db_quick_donate()
-    response = Response(status=200)
+    db_error, hit_max, donation_made = db_quick_donate()
 
     if (db_error != None):
         response = Response(status=500)
+    else:
+        if (hit_max == 'Yes'):
+            response = Response('You made a donation of $' + str(donation_made) +
+                                '\n You have reached your donation limit', status=200)
+        else:
+            response = Response('You made a donation of $' + str(donation_made), status=200)
 
     return response
 

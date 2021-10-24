@@ -54,13 +54,14 @@ def db_make_donation():
     user = get_user()
     donate_total = user.donated + user.donation
     if (donate_total > user.max_donation):
+        donation_made = user.max_donation - user.donated
         user.donated = user.max_donation
         user.save()
-        return None, 'Yes'
+        return None, 'Yes', donation_made
     else:
         user.donated = donate_total
         user.save()
-        return None, 'No'
+        return None, 'No', user.donation
 
 def db_set_store(store):
     user = get_user()
