@@ -34,6 +34,10 @@ def db_create_account(name, un, pw, phone):
 						   donation = 0,
 						   donated = 0,
 						   max_donation = 0)
+	print(new_acct.name)
+	print(new_acct.username)
+	print(new_acct.password)
+	print(new_acct.phone_num)
 
 def get_user():
 	return User.select().get()
