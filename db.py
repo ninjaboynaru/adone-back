@@ -59,6 +59,7 @@ def db_make_donation():
         return None, 'Yes'
     else:
         user.donated = donate_total
+        user.save()
         return None, 'No'
 
 def db_set_store(store):
