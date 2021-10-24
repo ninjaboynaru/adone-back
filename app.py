@@ -71,12 +71,17 @@ def set_charity(charity):
 
 @app.route("/quick_donate/")
 def quick_donate():
-    db_error = db_quick_donate()
+    db_error, hit_max, donation_made = db_quick_donate()
 
     if (db_error != None):
         response = Response(status=500)
     else:
-        response = Response(status=200)
+        if (hit_max == 'Yes'):
+            response = Response('You made a donation of $' + str(donation_made) +
+                                '\n You have reached your donation limit', status=200)
+        else:
+            response = Response('You made a donation of $' + str(donation_made), status=200)
+
     return response
 
 @app.route("/get/donated")
