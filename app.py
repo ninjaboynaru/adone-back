@@ -22,14 +22,17 @@ def set_donation(amount):
 
 @app.route("/make_donation/")
 def make_donation():
-    db_error = db_make_donation()
-    response = Response(status=200)
+    db_error, hit_max = db_make_donation()
 
     if (db_error != None):
         response = Response(status=500)
+    else:
+        if (hit_max == 'Yes'):
+            response = Response('You have reached your donation limit', status=200)
+        else:
+            response = Response(status=200)
 
     return response
-
 
 @app.route("/set/store/<store>")
 def set_store(store):
@@ -71,7 +74,7 @@ def get_donated():
     if (db_error != None):
         response = Response(status=500)
     else:
-        response = Response(str(donated), status=200)
+        response = Response('$' + str(donated), status=200)
 
     return response
 
