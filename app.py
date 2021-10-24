@@ -91,7 +91,7 @@ def get_donated():
     if (db_error != None):
         response = Response(status=500)
     else:
-        response = Response('You have donated $' + str(donated), status=200)
+        response = Response(str(donated), status=200)
 
     return response
 
