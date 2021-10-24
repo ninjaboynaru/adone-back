@@ -103,6 +103,7 @@ def db_set_charity(charity):
 
 def db_quick_donate():
     user = get_user()
+    orig_donation = user.donation
     user.donation = .05
     user.save()
 
@@ -112,9 +113,11 @@ def db_quick_donate():
         if (donation_made < 0):
             donation_made = 0
         user.donated = user.max_donation
+        user.donation = orig_donation
         user.save()
         return None, 'Yes', donation_made
     else:
         user.donated = donate_total
+        user.donation = orig_donation
         user.save()
-        return None, 'No', user.donation
+        return None, 'No', .05
